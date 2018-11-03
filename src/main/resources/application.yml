@@ -1,0 +1,13 @@
+
+management:
+  endpoints:
+    web:
+      base-path: /manage
+      exposure:
+        include: "*"
+
+logging:
+  level:
+    com.example: DEBUG
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.web.reactive: DEBUG
