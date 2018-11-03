@@ -7,6 +7,11 @@ I am new to Spring WebFlux, Spring Cloud Gateway and the Reactor project
 so the issue may be somewhere between seat and keyboard but the following 
 are the steps I took to recreate the error.
 
+I submitted issue 
+[633](https://github.com/spring-cloud/spring-cloud-gateway/issues/633)
+on Git Hub 
+[spring-cloud/spring-cloud-gateway](https://github.com/spring-cloud/spring-cloud-gateway).
+
 ## Background
 
 I used [Spring Intializr](https://start.spring.io/) to create 
