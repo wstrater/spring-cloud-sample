@@ -25,6 +25,7 @@ public class SpringCloudSampleApplication {
                 .route("path_route", r -> r.path("/get")
                         .uri("http://httpbin.org"))
                 .route("host_route", r -> r.host("*.myhost.org")
+                        .filters(filter -> filter.hystrix(c -> c.setName("slow-command")))
                         .uri(uri))
                 .build();
 
