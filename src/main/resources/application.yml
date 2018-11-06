@@ -6,6 +6,11 @@ management:
       exposure:
         include: "*"
 
+hystrix:
+  command:
+    default:
+      execution.isolation.thread.timeoutInMilliseconds: 2500
+
 logging:
   level:
     com.example: DEBUG

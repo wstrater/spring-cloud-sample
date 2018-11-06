@@ -1,7 +1,7 @@
 # Issue with Spring Cloud Gateway and Hystrix Filter
 
-I am trying to build a Spring Cloud Gateway server and started getting
-errors when I added a `Hystrix` filter to a `RouteLocatorBuilder`.
+I am trying to build a Spring Cloud Gateway server and started failing 
+when I added a `Hystrix` filter to a `RouteLocatorBuilder`.
 
 I am new to Spring WebFlux, Spring Cloud Gateway and the Reactor project 
 so the issue may be somewhere between seat and keyboard but the following 
@@ -141,7 +141,13 @@ You can see the routes are missing.
 
 ```
 curl http://localhost:8080/manage/gateway/routes
-{"timestamp":"2018-11-03T14:39:24.612+0000","path":"/manage/gateway/routes","status":404,"error":"Not Found","message":null}
+{
+  "timestamp": "2018-11-03T14:39:24.612+0000",
+  "path": "/manage/gateway/routes",
+  "status": 404,
+  "error": "Not Found",
+  "message": null
+}
 ```
 
 As expected the request to the gateway fails too.
@@ -170,6 +176,24 @@ you can see the difference.
 | RoutePredicateHandlerMapping     |                              |
 | SimpleUrlHandlerMapping          |                              |
 
+## Solution
+
+Changing `springCloudVersion` from `Greenwich.M1` to `Greenwich.BUILD-SNAPSHOT` 
+solved the issue but needed to add ["https://repo.spring.io/snapshot]("https://repo.spring.io/snapshot)
+to the list of repositories. 
+
+```
+repositories {
+	mavenCentral()
+	maven { url "https://repo.spring.io/milestone" }
+	maven { url "https://repo.spring.io/snapshot" }
+}
+
+ext {
+	springCloudVersion = 'Greenwich.BUILD-SNAPSHOT'
+}
+```
+
 ## Other Items
 
 The remaining are some other items I noticed on my 
@@ -181,7 +205,7 @@ here.
 
 While working with the gateway if kept getting an exception in
 `org.springframework.cloud.gateway.filter.NettyRoutingFilter`
-This appears to be a know bug and a fix is scheduled to be 
+This appears to be a known bug and a fix is scheduled to be 
 released.
 I copied the code from the post to work around it for now.
 

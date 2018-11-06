@@ -23,11 +23,11 @@ sourceCompatibility = 1.8
 repositories {
 	mavenCentral()
 	maven { url "https://repo.spring.io/milestone" }
+	maven { url "https://repo.spring.io/snapshot" }
 }
 
-
 ext {
-	springCloudVersion = 'Greenwich.M1'
+	springCloudVersion = 'Greenwich.BUILD-SNAPSHOT'
 }
 
 dependencies {
